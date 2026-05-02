@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UTKRSTA '26 MAGAZINE</title>
+  <meta name="description" content="Read the UTKRSTA '26 Magazine by VISTA Club, NMAM Institute of Technology online." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-from:    #0a100d;
+      --bg-mid:     #0f1a12;
+      --bg-to:      #080d09;
+      --gold:       #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-dark:  #997a00;
+      --green:      #4ade80;
+      --glass-bg:   rgba(15, 25, 17, 0.65);
+      --glass-bdr:  rgba(212, 175, 55, 0.22);
+      --nav-h:      68px;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: linear-gradient(135deg, var(--bg-from) 0%, var(--bg-mid) 50%, var(--bg-to) 100%);
+      background-attachment: fixed;
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    /* ── Blobs ─────────────────────────────── */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      animation: blobFloat 14s ease-in-out infinite;
+    }
+    .blob1 {
+      width: 650px; height: 650px;
+      background: radial-gradient(circle, rgba(74,222,128,0.13) 0%, transparent 70%);
+      top: -200px; left: -150px;
+    }
+    .blob2 {
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(212,175,55,0.11) 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+      animation-delay: -5s;
+    }
+    .blob3 {
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(74,222,128,0.08) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      animation-delay: -9s;
+    }
+    @keyframes blobFloat {
+      0%,100% { transform: translate(0,0) scale(1); }
+      33%      { transform: translate(35px,-25px) scale(1.05); }
+      66%      { transform: translate(-20px,30px) scale(0.95); }
+    }
+    .blob3 { animation-name: blobFloat3; }
+    @keyframes blobFloat3 {
+      0%,100% { transform: translate(-50%,-50%) scale(1); }
+      33%      { transform: translate(calc(-50% + 35px), calc(-50% - 25px)) scale(1.05); }
+      66%      { transform: translate(calc(-50% - 20px), calc(-50% + 30px)) scale(0.95); }
+    }
+
+    /* ── Navbar ────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-bdr);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.45);
+    }
+
+    .nav-logo {
+      height: 50px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+
+    .nav-pill-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 25, 17, 0.6);
+      border: 1px solid var(--glass-bdr);
+      border-radius: 100px;
+      padding: 6px 8px;
+      backdrop-filter: blur(10px);
+    }
+    .nav-pill {
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(212,175,55,0.3);
+      transition: all 0.2s;
+    }
+    .nav-pill:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .nav-btn {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(15,25,17,0.6);
+      border: 1px solid var(--glass-bdr);
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover {
+      background: rgba(212,175,55,0.15);
+      color: var(--gold);
+      border-color: rgba(212,175,55,0.5);
+      box-shadow: 0 4px 14px rgba(212,175,55,0.2);
+      transform: translateY(-1px);
+    }
+
+    /* ── Main ──────────────────────────────── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px 28px;
+      position: relative;
+      z-index: 1;
+      min-height: calc(100vh - var(--nav-h));
+    }
+
+    .magazine-wrap {
+      width: 100%;
+      max-width: 1200px;
+      height: calc(100vh - var(--nav-h) - 56px);
+      min-height: 480px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.8),
+        0 0 0 1px rgba(212,175,55,0.18),
+        0 0 60px rgba(74,222,128,0.08);
+      background: #111;
+      position: relative;
+    }
+
+    .magazine-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* shimmer while iframe loads */
+    .magazine-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0a100d 0%, #152018 50%, #0a100d 100%);
+      z-index: -1;
+    }
+
+    /* ── Footer ────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 10px 20px 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Fullscreen ────────────────────────── */
+    :fullscreen main  { padding: 0; }
+    :fullscreen .magazine-wrap { border-radius: 0; height: 100vh; max-width: 100%; }
+    :fullscreen nav, :fullscreen footer { display: none; }
+
+    /* ── Responsive ────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 0 14px; }
+      .nav-pill-wrap { display: none; }
+      .nav-logo { height: 40px; }
+      .magazine-wrap { height: calc(100svh - var(--nav-h) - 48px); border-radius: 14px; }
+    }
+    @media (max-width: 480px) {
+      main { padding: 12px 10px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background blobs -->
+  <div class="blob blob1" aria-hidden="true"></div>
+  <div class="blob blob2" aria-hidden="true"></div>
+  <div class="blob blob3" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <nav>
+    <img src="logo.png" alt="Utkrsta '26" class="nav-logo" />
+
+    <div class="nav-pill-wrap">
+      <a href="#magazine" class="nav-pill">Magazine</a>
+    </div>
+
+    <button
+      class="nav-btn"
+      onclick="toggleFullscreen()"
+      title="Toggle Fullscreen"
+      aria-label="Toggle Fullscreen"
+    >
+      <svg id="fs-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Magazine -->
+  <main id="magazine">
+    <div class="magazine-wrap">
+      <iframe
+        src="https://player.flipsnack.com?hash=NTdGQ0M2RUQ3NUUrMTlhejhsanh1Mw=="
+        allow="autoplay; clipboard-read; clipboard-write"
+        allowfullscreen
+        loading="lazy"
+        title="UTKRSTA '26 Magazine"
+      ></iframe>
+    </div>
+  </main>
+
+  <footer>
+    UTKRSTA '26 &nbsp;·&nbsp; VISTA Club &nbsp;·&nbsp; Dept. of ISE, NMAMIT
+  </footer>
+
+  <script>
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+    // Keyboard shortcut F = fullscreen
+    document.addEventListener('keydown', e => {
+      if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+    });
+  </script>
+</body>
+</html>
